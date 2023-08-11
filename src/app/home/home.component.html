@@ -1,0 +1,86 @@
+﻿<div class="card mt-4">
+    <h4 class="card-header py-3">Acesso permitido</h4>
+    <div class="card-body">
+        <h5>Usuários aptos a responder nossa pesquisa!</h5>
+        <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
+        <ul *ngIf="users">
+            <li *ngFor="let user of users">{{user.firstName}}</li>
+        </ul>
+    </div>
+    <div class="card-body">
+        <button class="btn btn-secondary" (click)="this.ocultarPesquisa = true">
+            Responder Nossa Pesquisa
+        </button>
+    </div>
+<hr>
+    <div *ngIf="ocultarPesquisa">
+        <h5 class="card-header py-3">Pesquisa</h5>
+        <div class="card-body">
+            <form [formGroup]="formPesquisa">
+                <div class="row">
+                    <h6>Qual nota você dá para nosso suporte técnico?</h6>
+                    <div class="select">
+                        <select id="notaSuporte" name="notaSuporte" formControlName="notaSuporte">
+                            <option [value]="0" selected="selected">0</option>
+                            <option [value]="1" >1</option>
+                            <option [value]="2" >2</option>
+                            <option [value]="3" >3</option>
+                            <option [value]="4" >4</option>
+                            <option [value]="5" >5</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <h6>Qual nota você aplica para a velocidade de nossa equipe na resolução do seu problema?</h6>
+                    <div class="select">
+                        <select id="notaVelocidade" name="notaVelocidade" formControlName="notaVelocidade">
+                            <option [value]="0" selected="selected">0</option>
+                            <option [value]="1" >1</option>
+                            <option [value]="2" >2</option>
+                            <option [value]="3" >3</option>
+                            <option [value]="4" >4</option>
+                            <option [value]="5" >5</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <h6>Você indicaria nosso serviço para algum amigo ou empresa?</h6>
+                    <div class="select">
+                        <select id="notaIndicacao" name="notaIndicacao" formControlName="notaIndicacao">
+                            <option [value]="true" selected="selected">sim</option>
+                            <option [value]="false" >não</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <h6>Nossos serviços estão na média do mercado?</h6>
+                    <div class="select">
+                        <select id="notaAtendeMercado" name="notaAtendeMercado" formControlName="notaAtendeMercado">
+                            <option [value]="true" selected="selected">sim</option>
+                            <option [value]="false" >não</option>
+                        </select>
+                    </div>
+                </div>
+
+                
+                <div class="row">
+                    <h6>Deixe uma sugestão para que possamos melhorar nossos serviços de atendimento?</h6>
+                    <div class="input-container w-100 mt-3">
+                        <textarea id="sugestao" class="input" type="text" formControlName="sugestao" rows="5" cols="50" placeholder="digite aqui sua sugestão"></textarea>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <button class="btn btn-primary" (click)="enviar()">
+                        Enviar Pesquisa
+                    </button>
+                </div>
+                
+            </form>    
+        </div>
+        
+    </div>
+</div>
